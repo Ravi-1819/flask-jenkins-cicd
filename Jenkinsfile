@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ravi-1819/flask-jenkins-cicd.git'
+                checkout scm
             }
         }
 
