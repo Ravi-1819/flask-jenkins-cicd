@@ -40,7 +40,7 @@ GitHub → Jenkins → Docker Build → Docker Run → Live Deployment
 
 ## 🌐 Live Application
 
-Deployed on AWS EC2 using Jenkins pipeline.
+Deployed on AWS EC2 using Jenkins pipeline mera nam jocker.
 
 URL:
 http://13.126.51.226:5000
