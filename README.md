@@ -43,7 +43,7 @@ GitHub → Jenkins → Docker Build → Docker Run → Live Deployment
 Deployed on AWS EC2 using Jenkins pipeline mera nam jocker.
 
 URL:
-http://13.126.51.226:5000
+(http://43.204.207.188:5000/)
 
 ---
 
