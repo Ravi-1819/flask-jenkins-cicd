@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aapka Apna Blood Bank</title>
+<title>Your Own Blood Bank</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -575,15 +575,15 @@
       </svg>
     </div>
     <div>
-      <div class="site-title">Aapka Apna Blood Bank</div>
+      <div class="site-title">Your Own Blood Bank</div>
     </div>
   </div>
-  <p class="tagline">Khoon do, Zindagi bachao — Ek Kadam Insaniyat Ki Taraf</p>
+  <p class="tagline">Donate Blood, Save Lives — Every Drop Counts</p>
 </header>
 
 <div class="ribbon">
   <span class="pulse-dot"></span>
-  Live donors database — Real-time search &nbsp;|&nbsp; 🩸 Ek donation, teen zindagiyaan
+  Live donors database — Real-time search &nbsp;|&nbsp; 🩸 One donation saves three lives
 </div>
 
 <div class="stats-bar">
@@ -604,10 +604,10 @@
 <div class="container">
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('donor')">
-      <span>🩸 Donor Banein</span>
+      <span>🩸 Become a Donor</span>
     </button>
     <button class="tab-btn" onclick="switchTab('receiver')">
-      <span>🔍 Blood Dhundein</span>
+      <span>🔍 Find Blood</span>
     </button>
   </div>
 
@@ -624,17 +624,17 @@
 
       <form id="donor-form" onsubmit="registerDonor(event)">
         <div class="form-group">
-          <label>Aapka Poora Naam</label>
-          <input type="text" id="d-name" placeholder="Jaise: Rahul Sharma" required maxlength="60">
+          <label>Your Full Name</label>
+          <input type="text" id="d-name" placeholder="e.g. John Smith" required maxlength="60">
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Mobile Number</label>
-            <input type="tel" id="d-mobile" placeholder="10 digit number" maxlength="10" required pattern="[0-9]{10}">
+            <input type="tel" id="d-mobile" placeholder="10-digit mobile number" maxlength="10" required pattern="[0-9]{10}">
           </div>
           <div class="form-group">
-            <label>Aapka Shehar</label>
-            <input type="text" id="d-city" placeholder="Jaise: Delhi, Agra" required maxlength="50">
+            <label>Your City</label>
+            <input type="text" id="d-city" placeholder="e.g. Delhi, Agra" required maxlength="50">
           </div>
         </div>
         <div class="form-group">
@@ -649,7 +649,7 @@
         </div>
         <button type="submit" class="btn-main" id="reg-btn">
           <span class="shine"></span>
-          <span id="reg-text">🩸 Donor List Mein Add Karein</span>
+          <span id="reg-text">🩸 Add Me to Donor List</span>
         </button>
       </form>
     </div>
@@ -664,17 +664,17 @@
           <path d="M16.5 16.5 L21 21" stroke="#e8213a" stroke-width="1.5" stroke-linecap="round"/>
           <path d="M8 11 H14 M11 8 V14" stroke="#ff6b7a" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        Blood Dhundein
+        Find Blood
       </div>
 
       <form id="search-form" onsubmit="searchDonors(event)">
         <div class="form-row">
           <div class="form-group">
-            <label>Apna Shehar Likhein</label>
-            <input type="text" id="s-city" placeholder="Jaise: Lucknow" required maxlength="50">
+            <label>Enter Your City</label>
+            <input type="text" id="s-city" placeholder="e.g. Lucknow" required maxlength="50">
           </div>
           <div class="form-group">
-            <label>Zaroorat Blood Group</label>
+            <label>Required Blood Group</label>
             <select id="s-blood" required>
               <option value="">— Blood Group —</option>
               <option>A+</option><option>A-</option>
@@ -686,7 +686,7 @@
         </div>
         <button type="submit" class="btn-main" id="search-btn">
           <span class="shine"></span>
-          <span id="search-text">🔍 Donors Dhundein</span>
+          <span id="search-text">🔍 Find Donors</span>
         </button>
       </form>
 
@@ -769,10 +769,10 @@
         showToast(d.message,'error');
       }
     }catch(err){
-      showToast('Network error. Dobara try karein.','error');
+      showToast('Network error. Please try again.','error');
     }
     btn.disabled=false;
-    txt.innerHTML='🩸 Donor List Mein Add Karein';
+    txt.innerHTML='🩸 Add Me to Donor List';
   }
 
   // Search
@@ -782,7 +782,7 @@
     const txt=document.getElementById('search-text');
     const wrap=document.getElementById('results-wrap');
     btn.disabled=true;
-    txt.innerHTML='<span class="loader"></span> Dhoondh raha hoon...';
+    txt.innerHTML='<span class="loader"></span> Searching...';
     wrap.style.display='none';
     try{
       const r=await fetch('/api/search',{
@@ -805,7 +805,7 @@
       showToast('Network error.','error');
     }
     btn.disabled=false;
-    txt.innerHTML='🔍 Donors Dhundein';
+    txt.innerHTML='🔍 Find Donors';
   }
 
   function renderResults(donors, count, city, bg){
@@ -816,12 +816,12 @@
         <div class="no-result">
           <div class="big-icon">🩸</div>
           <p><strong style="color:rgba(255,180,180,0.7)">${bg}</strong> blood ${city.charAt(0).toUpperCase()+city.slice(1)} mein abhi available nahi hai.</p>
-          <p style="margin-top:0.75rem; font-size:0.85rem; opacity:0.6">Aap khud donor bankar logo ki madad kar sakte hain!</p>
+          <p style="margin-top:0.75rem; font-size:0.85rem; opacity:0.6">You can help others by becoming a donor yourself!</p>
         </div>`;
       return;
     }
     let html=`<div class="results-header">
-      <strong>${count}</strong> donor${count>1?'s':''} mila ${city.charAt(0).toUpperCase()+city.slice(1)} mein — <strong>${bg}</strong>
+      <strong>${count}</strong> donor${count>1?'s':''} found in ${city.charAt(0).toUpperCase()+city.slice(1)} for <strong>${bg}</strong>
     </div>`;
     donors.forEach((d,i)=>{
       html+=`
