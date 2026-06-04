@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  blood-bank:
+    image: ${DOCKER_IMAGE:-blood-bank:latest}
+    container_name: blood-bank-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - blood_data:/data
+    restart: unless-stopped
+    environment:
+      - DB_PATH=/data/blood_bank.db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/stats"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  blood_data:
+    driver: local
