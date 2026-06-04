@@ -3,9 +3,15 @@ import sqlite3
 import os
 
 app = Flask(__name__)
-DB_PATH = os.environ.get('DB_PATH', 'blood_bank.db')
+
+# /data volume mount ke liye default — Docker me persist hoga
+DB_PATH = os.environ.get('DB_PATH', '/data/blood_bank.db')
 
 def init_db():
+    # DB directory exist na kare to banao
+    db_dir = os.path.dirname(DB_PATH)
+    if db_dir and not os.path.exists(db_dir):
+        os.makedirs(db_dir, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS donors (
@@ -18,6 +24,9 @@ def init_db():
     )''')
     conn.commit()
     conn.close()
+
+# Gunicorn + Flask dono ke liye — module load hote hi DB init ho
+init_db()
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
@@ -84,5 +93,4 @@ def stats():
     return jsonify({'total_donors': total, 'cities_covered': cities, 'most_common': top_group})
 
 if __name__ == '__main__':
-    init_db()
     app.run(host='0.0.0.0', port=5000, debug=False)
