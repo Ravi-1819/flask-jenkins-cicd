@@ -46,10 +46,10 @@ def register_donor():
     blood_group = data.get('blood_group', '').strip()
 
     if not all([name, mobile, city, blood_group]):
-        return jsonify({'success': False, 'message': 'Sabhi fields bharna zaroori hai!'}), 400
+        return jsonify({'success': False, 'message': 'All fields are required!'}), 400
 
     if not mobile.isdigit() or len(mobile) != 10:
-        return jsonify({'success': False, 'message': 'Mobile number 10 digits ka hona chahiye!'}), 400
+        return jsonify({'success': False, 'message': 'Mobile number must be exactly 10 digits!'}), 400
 
     conn = get_db()
     c = conn.cursor()
@@ -57,7 +57,7 @@ def register_donor():
               (name, mobile, city.lower(), blood_group))
     conn.commit()
     conn.close()
-    return jsonify({'success': True, 'message': f'Shukriya {name}! Aap humari donors list mein add ho gaye. 🙏'})
+    return jsonify({'success': True, 'message': f'Thank you {name}! You have been added to our donor list. 🙏'})
 
 @app.route('/api/search', methods=['POST'])
 def search_donors():
@@ -66,7 +66,7 @@ def search_donors():
     blood_group = data.get('blood_group', '').strip()
 
     if not all([city, blood_group]):
-        return jsonify({'success': False, 'message': 'City aur blood group dono bharna zaroori hai!'}), 400
+        return jsonify({'success': False, 'message': 'Please enter both city and blood group!'}), 400
 
     conn = get_db()
     c = conn.cursor()
