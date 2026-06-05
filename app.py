@@ -6,8 +6,8 @@ from datetime import datetime
 
 app = Flask(__name__)
 DB_PATH    = os.environ.get("DB_PATH", "/data/blood_bank.db")
-GMAIL_USER = os.environ.get("GMAIL_USER", "")
-GMAIL_PASS = os.environ.get("GMAIL_PASS", "")
+GMAIL_USER = os.environ.get("rs3887484@gmail", "")
+GMAIL_PASS = os.environ.get("amyxgbqstlyonjrg", "")
 NOTIFY_TO  = os.environ.get("NOTIFY_TO", GMAIL_USER)
 
 def init_db():
